@@ -10,30 +10,13 @@
     <style>
         /* ===== HOME HERO ===== */
         .hero {
-            min-height: 100vh;
             display: flex; align-items: center; justify-content: center;
-            background: linear-gradient(160deg, var(--green-light) 0%, var(--white) 40%, var(--celeste-light) 100%);
-            padding: 7rem 2rem 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero::before {
-            content: '';
-            position: absolute; top: -20%; right: -10%;
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(126,200,227,.15) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-        .hero::after {
-            content: '';
-            position: absolute; bottom: -15%; left: -8%;
-            width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(46,125,82,.1) 0%, transparent 70%);
-            border-radius: 50%;
+            background: #fff;
+            padding: 6rem 2rem 0;
+            text-align: center;
         }
         .hero-inner {
-            max-width: 800px; text-align: center;
-            position: relative; z-index: 1;
+            max-width: 800px;
         }
         .hero-badge {
             display: inline-block;
@@ -48,28 +31,37 @@
             font-size: clamp(2.6rem, 6vw, 4.2rem);
             color: var(--green-dark);
             line-height: 1.15;
-            margin-bottom: 1.5rem;
+            margin-bottom: .5rem;
         }
         .hero h1 span {
             background: linear-gradient(135deg, var(--celeste-dark), var(--green));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+        .hero-text {
+            font-size: 1.15rem; line-height: 1.8;
+            color: var(--gray-600);
+            max-width: 640px; margin: 0 auto 0;
+        }
 
         /* ===== PHOTO ===== */
+        .hero-photo-section {
+            background: #fff;
+            text-align: center;
+            padding: 0;
+        }
         .hero-photo {
-            width: 220px; height: 220px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--green);
-            box-shadow: var(--shadow-lg);
-            margin: 0 auto 2rem;
+            display: block;
+            max-width: 380px;
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
         }
 
         /* ===== BIO ===== */
         .bio {
-            background: var(--gray-50);
-            padding: 4rem 2rem;
+            background: #fff;
+            padding: 2rem 2rem 4rem;
         }
         .bio-inner {
             max-width: 720px;
@@ -151,7 +143,8 @@
         }
 
         @media (max-width: 768px) {
-            .hero-photo { width: 180px; height: 180px; }
+            .hero-photo { max-width: 300px; }
+            .hero { padding: 5.5rem 1.5rem 0; }
         }
     </style>
 </head>
@@ -177,9 +170,18 @@
     <div class="hero-inner fade-up">
         <div class="hero-badge">Artista &middot; Escritora &middot; Creadora</div>
         <h1>Hola, soy <span>Carolina Alvado</span></h1>
-        <img src="mama.jpeg" alt="Carolina Alvado" class="hero-photo">
+        <p class="hero-text">
+            Madre, artista plástica y creadora argentina. Autora del libro
+            <em>De la repetición a la creación</em>. Desde Francia acompaño a personas
+            a descubrir sus patrones limitantes y transformar su vida a través de simples
+            pasos y ejercicios que llamo, método 5M.
+        </p>
     </div>
 </section>
+
+<div class="hero-photo-section">
+    <img src="mama.jpeg" alt="Carolina Alvado" class="hero-photo fade-up">
+</div>
 
 <!-- ===== BIO ===== -->
 <section class="bio">
