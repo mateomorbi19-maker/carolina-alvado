@@ -312,26 +312,6 @@
             font-family: 'Inter', sans-serif;
             position: relative;
         }
-        .reto-cta .price-old {
-            font-size: 1.3rem;
-            text-decoration: line-through;
-            opacity: .6;
-            margin-left: .5rem;
-        }
-        .reto-cta .countdown-label {
-            font-size: .95rem;
-            opacity: .85;
-            margin: .75rem 0 .25rem;
-            position: relative;
-        }
-        .countdown {
-            font-size: 2rem; font-weight: 700;
-            font-family: 'Inter', sans-serif;
-            letter-spacing: .05em;
-            position: relative;
-            margin-bottom: 1.5rem;
-        }
-        .countdown .expired-text { font-size: 1rem; font-weight: 500; }
         .reto-cta .btn {
             background: #fff; color: var(--green-dark);
             font-size: 1.1rem; padding: 1rem 2.5rem;
@@ -360,11 +340,12 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
+            padding: 1.5rem;
         }
         .libro-video-wrap {
+            max-width: 400px;
             width: 100%;
-            max-width: 700px;
+            max-height: calc(100vh - 3rem);
             border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow-lg);
@@ -373,6 +354,7 @@
         }
         .libro-video-wrap canvas {
             width: 100%;
+            height: auto;
             display: block;
         }
         .libro-cta {
@@ -439,8 +421,12 @@
             section { padding: 4rem 1.2rem; }
             .reto-cta { padding: 2rem 1.5rem; }
             .reto-cta .price { font-size: 2.2rem; }
-            .countdown { font-size: 1.5rem; }
             .libro-scroll-section { height: 200vh; }
+            .libro-video-wrap {
+                max-width: 85vw;
+                max-height: calc(100vh - 2rem);
+            }
+            .libro-sticky { padding: 1rem; }
         }
     </style>
 </head>
@@ -468,9 +454,9 @@
         <h1>Hola, soy <span>Carolina Alvado</span></h1>
         <p class="hero-text">
             Madre, artista plástica y creadora argentina. Autora del libro
-            <em>De la repetición a la creación</em>. Desde Francia, acompaño a personas
-            a descubrir sus patrones limitantes y transformar su vida a través del arte
-            y la meditación.
+            <em>De la repetición a la creación</em>. Desde Francia acompaño a personas
+            a descubrir sus patrones limitantes y transformar su vida a través de simples
+            pasos y ejercicios que llamo, método 5M.
         </p>
         <div class="hero-cta">
             <a href="#reto" class="btn btn-primary">Descubre el Reto 5M</a>
@@ -497,8 +483,8 @@
         </div>
         <div class="reto-card fade-up">
             <div class="icon">&#129504;</div>
-            <h4>Meditación guiada</h4>
-            <p>Introducción progresiva a la meditación con el Método 5M (Cinco Metros) para conectar con tu interior.</p>
+            <h4>Respiración consciente</h4>
+            <p>Introducción progresiva a la respiración consciente con el Método 5M (Cinco Metros) para conectar con tu interior.</p>
         </div>
         <div class="reto-card fade-up">
             <div class="icon">&#10024;</div>
@@ -534,11 +520,10 @@
         <div class="testimonio-card fade-up">
             <div class="video-wrap">
                 <iframe
-                    src="https://www.youtube-nocookie.com/embed/bhTw_tkSATM?rel=0"
+                    src="https://www.youtube.com/embed/bhTw_tkSATM?rel=0"
                     title="Testimonio de Glenda"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen loading="lazy"
-                    referrerpolicy="no-referrer">
+                    allowfullscreen loading="lazy">
                 </iframe>
             </div>
             <div class="testimonio-name">
@@ -549,11 +534,10 @@
         <div class="testimonio-card fade-up">
             <div class="video-wrap">
                 <iframe
-                    src="https://www.youtube-nocookie.com/embed/mlHBK_dSZ8g?rel=0"
+                    src="https://www.youtube.com/embed/mlHBK_dSZ8g?rel=0"
                     title="Testimonio de Noelia"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen loading="lazy"
-                    referrerpolicy="no-referrer">
+                    allowfullscreen loading="lazy">
                 </iframe>
             </div>
             <div class="testimonio-name">
@@ -563,16 +547,11 @@
         </div>
     </div>
 
-    <!-- CTA con countdown -->
-    <div class="reto-cta fade-up" id="retoCta">
+    <!-- CTA Reto -->
+    <div class="reto-cta fade-up">
         <h3>Comenzá tu transformación hoy</h3>
-        <div>
-            <span class="price" id="priceDisplay">$49</span>
-            <span class="price-old" id="priceOld" style="display:none;">$49</span>
-        </div>
-        <p class="countdown-label" id="countdownLabel">Esta oferta expira en:</p>
-        <div class="countdown" id="countdown">10:00</div>
-        <a href="#" class="btn" id="retoBtn">Acceder al Reto 5M por $49</a>
+        <div class="price">$49</div>
+        <a href="#" class="btn">Acceder al Reto 5M por $49</a>
     </div>
 </section>
 
@@ -587,13 +566,13 @@
         <div class="libro-scroll-section">
             <div class="libro-sticky">
                 <div class="libro-video-wrap fade-up">
-                    <canvas id="libroCanvas" width="800" height="533"></canvas>
+                    <canvas id="libroCanvas" width="800" height="1200"></canvas>
                 </div>
             </div>
         </div>
         <div class="libro-cta fade-up">
             <p>Descubrí las herramientas para romper tus patrones limitantes y crear la vida que merecés.</p>
-            <a href="#" class="btn btn-primary" target="_blank" rel="noopener">Comprar en Amazon</a>
+            <a href="https://www.amazon.fr/dp/2959526910?ref=cm_sw_r_cp_ud_dp_WEDAPVKPDN7BDMG7043M&ref_=cm_sw_r_cp_ud_dp_WEDAPVKPDN7BDMG7043M&social_share=cm_sw_r_cp_ud_dp_WEDAPVKPDN7BDMG7043M&skipTwisterOG=1" class="btn btn-primary" target="_blank" rel="noopener">Comprar en Amazon — $19</a>
         </div>
     </div>
 </section>
@@ -631,49 +610,6 @@
         entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.15 });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-    // === COUNTDOWN 10 MIN ===
-    (function() {
-        const STORAGE_KEY = 'carolina_reto_countdown_start';
-        const DURATION = 10 * 60 * 1000; // 10 minutos
-
-        let startTime = localStorage.getItem(STORAGE_KEY);
-        if (!startTime) {
-            startTime = Date.now();
-            localStorage.setItem(STORAGE_KEY, startTime);
-        } else {
-            startTime = parseInt(startTime, 10);
-        }
-
-        const countdownEl = document.getElementById('countdown');
-        const priceDisplay = document.getElementById('priceDisplay');
-        const priceOld = document.getElementById('priceOld');
-        const countdownLabel = document.getElementById('countdownLabel');
-        const retoBtn = document.getElementById('retoBtn');
-
-        function update() {
-            const elapsed = Date.now() - startTime;
-            const remaining = DURATION - elapsed;
-
-            if (remaining <= 0) {
-                // Expirado
-                countdownEl.innerHTML = '<span class="expired-text">La oferta ha expirado</span>';
-                countdownLabel.textContent = 'El precio ha cambiado:';
-                priceDisplay.textContent = '$99';
-                priceOld.style.display = 'inline';
-                retoBtn.textContent = 'Acceder al Reto 5M por $99';
-                return;
-            }
-
-            const mins = Math.floor(remaining / 60000);
-            const secs = Math.floor((remaining % 60000) / 1000);
-            countdownEl.textContent =
-                String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
-
-            requestAnimationFrame(update);
-        }
-        update();
-    })();
 
     // === LIBRO: SCROLL-DRIVEN FRAME SEQUENCE (Apple-style) ===
     (function() {
