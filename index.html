@@ -61,11 +61,30 @@
         /* ===== BIO ===== */
         .bio {
             background: #fff;
-            padding: 2rem 2rem 4rem;
+            padding: 1rem 2rem 3rem;
+            text-align: center;
+        }
+        .bio-toggle {
+            display: inline-flex; align-items: center; gap: .4rem;
+            background: none; border: 2px solid var(--green);
+            color: var(--green); font-weight: 600; font-size: .95rem;
+            padding: .6rem 1.8rem; border-radius: 50px;
+            cursor: pointer; transition: all .2s;
+        }
+        .bio-toggle:hover { background: var(--green-light); }
+        .bio-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .5s ease, opacity .4s ease;
+            opacity: 0;
+        }
+        .bio-content.open {
+            max-height: 1200px;
+            opacity: 1;
         }
         .bio-inner {
             max-width: 720px;
-            margin: 0 auto;
+            margin: 1.5rem auto 1rem;
             font-size: 1.05rem;
             line-height: 2;
             color: var(--gray-600);
@@ -185,7 +204,9 @@
 
 <!-- ===== BIO ===== -->
 <section class="bio">
-    <div class="bio-inner fade-up">
+    <button class="bio-toggle fade-up" id="bioToggle">Ver biografía &#9660;</button>
+    <div class="bio-content" id="bioContent">
+    <div class="bio-inner">
         Nací en 25 de Mayo, Provincia de Buenos Aires,
         entre campos abiertos y cielos infinitos.
         A los casi tres años, mi vida dio un giro hacia el sur más austral:
@@ -207,6 +228,8 @@
         No fue hasta hace tres años que decidí llamarme artista.
         No porque antes no lo fuera, sino porque por fin me permití serlo.
         Tal vez había llegado, al fin, la hora de ser quien siempre quise ser.
+    </div>
+    <button class="bio-toggle" id="bioHide" style="display:none;">Ocultar &#9650;</button>
     </div>
 </section>
 
@@ -254,6 +277,21 @@
         entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.15 });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // === BIO TOGGLE ===
+    const bioToggle = document.getElementById('bioToggle');
+    const bioContent = document.getElementById('bioContent');
+    const bioHide = document.getElementById('bioHide');
+    bioToggle.addEventListener('click', () => {
+        bioContent.classList.add('open');
+        bioToggle.style.display = 'none';
+        bioHide.style.display = 'inline-flex';
+    });
+    bioHide.addEventListener('click', () => {
+        bioContent.classList.remove('open');
+        bioToggle.style.display = 'inline-flex';
+        bioHide.style.display = 'none';
+    });
 </script>
 
 </body>
