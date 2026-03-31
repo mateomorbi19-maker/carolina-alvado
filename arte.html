@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Arte — Carolina Alvado</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .arte-section {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, var(--celeste-light) 0%, #fff 100%);
+            padding: 7rem 2rem 4rem;
+            text-align: center;
+        }
+        .arte-section h1 {
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            color: var(--green-dark);
+            margin-bottom: 1.5rem;
+        }
+        .arte-badge {
+            display: inline-block;
+            background: var(--celeste);
+            color: #fff;
+            font-size: 1rem; font-weight: 600;
+            padding: .6em 2em;
+            border-radius: 50px;
+            letter-spacing: .05em;
+        }
+        .arte-text {
+            margin-top: 2rem;
+            color: var(--gray-600);
+            font-size: 1.1rem;
+            max-width: 500px;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">Carolina Alvado</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="reto.html">Reto 5M</a></li>
+            <li><a href="libro.html">Mi Libro</a></li>
+            <li><a href="arte.html">Mi Arte</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Menú">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<section class="arte-section">
+    <h1 class="fade-up">Mi Arte</h1>
+    <div class="arte-badge fade-up">Próximamente</div>
+    <p class="arte-text fade-up">Estoy preparando esta sección con mis obras. Muy pronto podrás explorar mi mundo artístico.</p>
+</section>
+
+<footer>
+    <div class="footer-name">Carolina Alvado</div>
+    <p>&copy; 2026 Carolina Alvado. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

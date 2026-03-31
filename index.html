@@ -6,111 +6,14 @@
     <title>Carolina Alvado — Arte, Meditación y Transformación</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <style>
-        /* ===== RESET & BASE ===== */
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Inter', sans-serif;
-            color: #2d2d2d;
-            background: #fff;
-            overflow-x: hidden;
-        }
-
-        /* ===== VARIABLES ===== */
-        :root {
-            --green: #2e7d52;
-            --green-dark: #1b5e3b;
-            --green-light: #e8f5ee;
-            --celeste: #7ec8e3;
-            --celeste-light: #e3f5fb;
-            --celeste-dark: #4da8c7;
-            --white: #ffffff;
-            --gray-50: #f9fafb;
-            --gray-100: #f3f4f6;
-            --gray-600: #4b5563;
-            --gray-800: #1f2937;
-            --gold: #d4a853;
-            --radius: 16px;
-            --shadow: 0 4px 24px rgba(0,0,0,.08);
-            --shadow-lg: 0 12px 48px rgba(0,0,0,.12);
-        }
-
-        /* ===== TYPOGRAPHY ===== */
-        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
-        h2.section-title {
-            font-size: clamp(2rem, 5vw, 3.2rem);
-            text-align: center;
-            margin-bottom: .5em;
-            color: var(--green-dark);
-        }
-        .section-subtitle {
-            text-align: center;
-            color: var(--gray-600);
-            font-size: 1.1rem;
-            max-width: 640px;
-            margin: 0 auto 1.5rem;
-            line-height: 1.7;
-        }
-
-        /* ===== NAV ===== */
-        nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            background: rgba(255,255,255,.92);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(46,125,82,.1);
-            transition: box-shadow .3s;
-        }
-        nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,.08); }
-        .nav-inner {
-            max-width: 1200px; margin: 0 auto;
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 1rem 2rem;
-        }
-        .nav-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem; font-weight: 700;
-            color: var(--green-dark);
-            text-decoration: none;
-        }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a {
-            text-decoration: none; color: var(--gray-600);
-            font-weight: 500; font-size: .95rem;
-            transition: color .2s;
-            position: relative;
-        }
-        .nav-links a::after {
-            content: ''; position: absolute; bottom: -4px; left: 0;
-            width: 0; height: 2px; background: var(--green);
-            transition: width .3s;
-        }
-        .nav-links a:hover { color: var(--green); }
-        .nav-links a:hover::after { width: 100%; }
-
-        /* Hamburger */
-        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
-        .hamburger span { display: block; width: 26px; height: 2.5px; background: var(--green-dark); border-radius: 2px; transition: .3s; }
-
-        @media (max-width: 768px) {
-            .hamburger { display: flex; }
-            .nav-links {
-                position: fixed; top: 0; right: -100%; width: 70%; height: 100vh;
-                flex-direction: column; background: #fff;
-                padding: 5rem 2rem 2rem; gap: 1.5rem;
-                box-shadow: var(--shadow-lg);
-                transition: right .35s ease;
-            }
-            .nav-links.open { right: 0; }
-            .nav-links a { font-size: 1.1rem; }
-        }
-
-        /* ===== HERO ===== */
+        /* ===== HOME HERO ===== */
         .hero {
             min-height: 100vh;
             display: flex; align-items: center; justify-content: center;
             background: linear-gradient(160deg, var(--green-light) 0%, var(--white) 40%, var(--celeste-light) 100%);
-            padding: 8rem 2rem 4rem;
+            padding: 7rem 2rem 4rem;
             position: relative;
             overflow: hidden;
         }
@@ -152,280 +55,103 @@
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        .hero-text {
-            font-size: 1.15rem; line-height: 1.8;
+
+        /* ===== PHOTO ===== */
+        .hero-photo {
+            width: 220px; height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--green);
+            box-shadow: var(--shadow-lg);
+            margin: 0 auto 2rem;
+        }
+
+        /* ===== BIO ===== */
+        .bio {
+            background: var(--gray-50);
+            padding: 4rem 2rem;
+        }
+        .bio-inner {
+            max-width: 720px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            line-height: 2;
             color: var(--gray-600);
-            max-width: 640px; margin: 0 auto 2.5rem;
-        }
-        .hero-cta {
-            display: inline-flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
-        }
-        .btn {
-            display: inline-flex; align-items: center; gap: .5rem;
-            padding: .9rem 2rem; border-radius: 50px;
-            font-weight: 600; font-size: 1rem;
-            text-decoration: none; cursor: pointer;
-            transition: transform .2s, box-shadow .2s;
-            border: none;
-        }
-        .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
-        .btn-primary { background: var(--green); color: #fff; }
-        .btn-primary:hover { background: var(--green-dark); }
-        .btn-outline {
-            background: transparent; color: var(--green);
-            border: 2px solid var(--green);
-        }
-        .btn-outline:hover { background: var(--green-light); }
-        .btn-celeste { background: var(--celeste); color: #fff; }
-        .btn-celeste:hover { background: var(--celeste-dark); }
-
-        /* ===== SECTIONS ===== */
-        section { padding: 6rem 2rem; }
-
-        /* ===== RETO 5M ===== */
-        .reto {
-            background: linear-gradient(180deg, #fff 0%, var(--green-light) 100%);
-        }
-        .reto-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto 4rem;
-        }
-        .reto-card {
-            background: #fff;
-            border-radius: var(--radius);
-            padding: 2rem;
-            box-shadow: var(--shadow);
             text-align: center;
-            transition: transform .25s;
+            font-style: italic;
         }
-        .reto-card:hover { transform: translateY(-6px); }
-        .reto-card .icon {
-            width: 56px; height: 56px;
-            background: var(--green-light);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 1.5rem;
-        }
-        .reto-card h4 {
-            font-size: 1.15rem; margin-bottom: .5rem;
-            color: var(--green-dark);
-        }
-        .reto-card p { color: var(--gray-600); font-size: .95rem; line-height: 1.6; }
 
-        /* Objetivos */
-        .objetivos {
-            max-width: 800px;
-            margin: 0 auto 4rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.2rem;
+        /* ===== CARDS SECTION ===== */
+        .cards-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(180deg, #fff 0%, var(--celeste-light) 100%);
         }
-        @media (max-width: 600px) { .objetivos { grid-template-columns: 1fr; } }
-        .objetivo-item {
-            display: flex; align-items: flex-start; gap: .75rem;
-            background: #fff;
-            padding: 1.2rem 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0,0,0,.05);
-        }
-        .objetivo-item .check {
-            flex-shrink: 0;
-            width: 28px; height: 28px;
-            background: var(--green);
-            color: #fff;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: .85rem; font-weight: 700;
-        }
-        .objetivo-item p { font-size: .95rem; color: var(--gray-600); line-height: 1.5; }
-
-        /* Testimonios */
-        .testimonios-title {
+        .cards-section h2 {
             text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
             color: var(--green-dark);
             margin-bottom: 2.5rem;
         }
-        .testimonios-grid {
+        .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            max-width: 900px;
-            margin: 0 auto 4rem;
-        }
-        .testimonio-card {
-            background: #fff;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-        .testimonio-card .video-wrap {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-        }
-        .testimonio-card iframe {
-            position: absolute; top: 0; left: 0;
-            width: 100%; height: 100%; border: 0;
-        }
-        .testimonio-card .testimonio-name {
-            padding: 1rem 1.5rem;
-            font-weight: 600;
-            color: var(--green-dark);
-            font-size: 1rem;
-        }
-        .testimonio-card .testimonio-name span {
-            display: block; font-weight: 400;
-            font-size: .85rem; color: var(--gray-600);
-            margin-top: .2rem;
-        }
-
-        /* CTA Reto */
-        .reto-cta {
-            text-align: center;
-            background: linear-gradient(135deg, var(--green-dark), var(--green));
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-            border-radius: var(--radius);
-            color: #fff;
-            position: relative;
-            overflow: hidden;
-        }
-        .reto-cta::before {
-            content: ''; position: absolute; top: -50%; right: -30%;
-            width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(126,200,227,.2) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-        .reto-cta h3 {
-            font-size: 1.6rem; margin-bottom: .5rem;
-            position: relative;
-        }
-        .reto-cta .price {
-            font-size: 3rem; font-weight: 700;
-            font-family: 'Inter', sans-serif;
-            position: relative;
-        }
-        .reto-cta .btn {
-            background: #fff; color: var(--green-dark);
-            font-size: 1.1rem; padding: 1rem 2.5rem;
-            position: relative;
-        }
-        .reto-cta .btn:hover { background: var(--celeste-light); color: var(--green-dark); }
-
-        /* ===== MI LIBRO ===== */
-        .libro {
-            background: var(--gray-50);
-            padding-bottom: 0;
-            padding-top: 2rem;
-        }
-        .libro-container {
             max-width: 1000px;
             margin: 0 auto;
         }
-        .libro-scroll-section {
-            position: relative;
-            height: 300vh;
-        }
-        .libro-sticky {
-            position: sticky;
-            top: 5vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 1rem;
-        }
-        .libro-video-wrap {
-            max-width: 400px;
-            width: 100%;
-            max-height: calc(100vh - 3rem);
+        .card {
+            background: #fff;
             border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            background: #000;
-            position: relative;
-        }
-        .libro-video-wrap canvas {
-            width: 100%;
-            height: auto;
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform .25s, box-shadow .25s;
+            text-decoration: none;
+            color: inherit;
             display: block;
         }
-        .libro-cta {
-            text-align: center;
-            padding: 0.5rem 2rem 3rem;
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
         }
-        .libro-cta p {
-            font-size: 1.1rem;
-            color: var(--gray-600);
-            margin-bottom: 1.5rem;
-            max-width: 500px;
-            margin-left: auto; margin-right: auto;
-            line-height: 1.7;
+        .card .card-icon {
+            width: 70px; height: 70px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1.2rem;
+            font-size: 2rem;
         }
-
-        /* ===== MIS OBRAS ===== */
-        .obras {
-            background: linear-gradient(180deg, var(--celeste-light) 0%, #fff 100%);
-            text-align: center;
-            min-height: 50vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .obras-badge {
-            display: inline-block;
-            background: var(--celeste);
-            color: #fff;
-            font-size: .85rem; font-weight: 600;
-            padding: .5em 1.5em;
-            border-radius: 50px;
-            letter-spacing: .05em;
-            margin-top: 1rem;
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            background: var(--gray-800);
-            color: rgba(255,255,255,.7);
-            text-align: center;
-            padding: 3rem 2rem;
-            font-size: .9rem;
-        }
-        footer a { color: var(--celeste); text-decoration: none; }
-        footer .footer-name {
-            font-family: 'Playfair Display', serif;
+        .card-icon.green { background: var(--green-light); }
+        .card-icon.celeste { background: var(--celeste-light); }
+        .card h3 {
             font-size: 1.3rem;
-            color: #fff;
+            color: var(--green-dark);
             margin-bottom: .5rem;
         }
-
-        /* ===== ANIMATIONS ===== */
-        .fade-up {
-            opacity: 0; transform: translateY(30px);
-            transition: opacity .7s ease, transform .7s ease;
+        .card p {
+            color: var(--gray-600);
+            font-size: .95rem;
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
         }
-        .fade-up.visible {
-            opacity: 1; transform: translateY(0);
+        .card .card-price {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+        }
+        .card .card-link {
+            display: inline-block;
+            font-weight: 600;
+            color: var(--green);
+            font-size: .95rem;
+            border-bottom: 2px solid var(--green);
+            padding-bottom: 2px;
         }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            section { padding: 4rem 1.2rem; }
-            .reto-cta { padding: 2rem 1.5rem; }
-            .reto-cta .price { font-size: 2.2rem; }
-            .libro-scroll-section { height: 200vh; }
-            .libro-video-wrap {
-                max-width: 85vw;
-                max-height: calc(100vh - 2rem);
-            }
-            .libro-sticky { padding: 1rem; }
+            .hero-photo { width: 180px; height: 180px; }
         }
     </style>
 </head>
@@ -434,11 +160,11 @@
 <!-- ===== NAV ===== -->
 <nav id="navbar">
     <div class="nav-inner">
-        <a href="#" class="nav-logo">Carolina Alvado</a>
+        <a href="index.html" class="nav-logo">Carolina Alvado</a>
         <ul class="nav-links" id="navLinks">
-            <li><a href="#reto">Reto 5M</a></li>
-            <li><a href="#libro">Mi Libro</a></li>
-            <li><a href="#obras">Mi Arte</a></li>
+            <li><a href="reto.html">Reto 5M</a></li>
+            <li><a href="libro.html">Mi Libro</a></li>
+            <li><a href="arte.html">Mi Arte</a></li>
         </ul>
         <button class="hamburger" id="hamburger" aria-label="Menú">
             <span></span><span></span><span></span>
@@ -447,139 +173,66 @@
 </nav>
 
 <!-- ===== HERO ===== -->
-<section class="hero" id="inicio">
+<section class="hero">
     <div class="hero-inner fade-up">
         <div class="hero-badge">Artista &middot; Escritora &middot; Creadora</div>
         <h1>Hola, soy <span>Carolina Alvado</span></h1>
-        <p class="hero-text">
-            Madre, artista plástica y creadora argentina. Autora del libro
-            <em>De la repetición a la creación</em>. Desde Francia acompaño a personas
-            a descubrir sus patrones limitantes y transformar su vida a través de simples
-            pasos y ejercicios que llamo, método 5M.
-        </p>
-        <div class="hero-cta">
-            <a href="#reto" class="btn btn-primary">Descubre el Reto 5M</a>
-            <a href="#libro" class="btn btn-outline">Conoce mi libro</a>
-        </div>
+        <img src="mama.jpeg" alt="Carolina Alvado" class="hero-photo">
     </div>
 </section>
 
-<!-- ===== RETO 5M ===== -->
-<section class="reto" id="reto">
-    <h2 class="section-title fade-up">Reto 5M</h2>
-    <p class="section-subtitle fade-up">
-        Un programa de cuatro semanas donde cada semana recibís un video con ejercicios
-        prácticos para introducirte paso a paso en la creación consciente de la vida
-        que siempre quisiste.
-    </p>
-
-    <!-- Descripción -->
-    <div class="reto-grid">
-        <div class="reto-card fade-up">
-            <div class="icon">&#127793;</div>
-            <h4>Semana a semana</h4>
-            <p>Cada semana un nuevo video con ejercicios prácticos diseñados para avanzar a tu propio ritmo.</p>
-        </div>
-        <div class="reto-card fade-up">
-            <div class="icon">&#129504;</div>
-            <h4>Respiración consciente</h4>
-            <p>Introducción progresiva a la respiración consciente con el Método 5M (Cinco Metros) para conectar con tu interior.</p>
-        </div>
-        <div class="reto-card fade-up">
-            <div class="icon">&#10024;</div>
-            <h4>Creación consciente</h4>
-            <p>Aprendé a identificar tus patrones limitantes y construí la realidad que deseás desde la consciencia.</p>
-        </div>
-    </div>
-
-    <!-- Objetivos -->
-    <h3 class="testimonios-title fade-up">Objetivos del reto</h3>
-    <div class="objetivos fade-up">
-        <div class="objetivo-item">
-            <div class="check">&#10003;</div>
-            <p>Iniciarte en la práctica de la meditación de forma simple y progresiva</p>
-        </div>
-        <div class="objetivo-item">
-            <div class="check">&#10003;</div>
-            <p>Identificar los patrones que te limitan y frenan tu crecimiento personal</p>
-        </div>
-        <div class="objetivo-item">
-            <div class="check">&#10003;</div>
-            <p>Desarrollar herramientas concretas para la creación consciente de tu realidad</p>
-        </div>
-        <div class="objetivo-item">
-            <div class="check">&#10003;</div>
-            <p>Conectar con una comunidad de personas en el mismo camino de transformación</p>
-        </div>
-    </div>
-
-    <!-- Testimonios -->
-    <h3 class="testimonios-title fade-up">Lo que dicen quienes ya lo vivieron</h3>
-    <div class="testimonios-grid">
-        <div class="testimonio-card fade-up">
-            <div class="video-wrap">
-                <iframe
-                    src="https://www.youtube.com/embed/bhTw_tkSATM?rel=0"
-                    title="Testimonio de Glenda"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen loading="lazy">
-                </iframe>
-            </div>
-            <div class="testimonio-name">
-                Glenda
-                <span>Participante del Reto 5M</span>
-            </div>
-        </div>
-        <div class="testimonio-card fade-up">
-            <div class="video-wrap">
-                <iframe
-                    src="https://www.youtube.com/embed/mlHBK_dSZ8g?rel=0"
-                    title="Testimonio de Noelia"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen loading="lazy">
-                </iframe>
-            </div>
-            <div class="testimonio-name">
-                Noelia
-                <span>Participante del Reto 5M</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- CTA Reto -->
-    <div class="reto-cta fade-up">
-        <h3>Comenzá tu transformación hoy</h3>
-        <div class="price">$49</div>
-        <a href="#" class="btn">Acceder al Reto 5M por $49</a>
+<!-- ===== BIO ===== -->
+<section class="bio">
+    <div class="bio-inner fade-up">
+        Nací en 25 de Mayo, Provincia de Buenos Aires,
+        entre campos abiertos y cielos infinitos.
+        A los casi tres años, mi vida dio un giro hacia el sur más austral:
+        Ushuaia, Tierra del Fuego, donde crecí entre montañas, vientos
+        intensos y paisajes que parecían susurrar historias al oído.<br><br>
+        El arte y la creatividad siempre estuvieron presentes, como una
+        corriente subterránea que me atravesaba, aunque mi formación
+        académica siguió otros caminos. Empecé a pintar alrededor de
+        los veinte, quizás como una forma de decir lo que no sabía cómo
+        expresar con palabras. Lo hacía de forma intuitiva, visceral, con
+        colores intensos y composiciones a veces caóticas, como mi
+        propio mundo interior.<br><br>
+        A los 41 años me mudé a Francia. Ese cambio geográfico trajo
+        consigo una transformación profunda. Fue una etapa de
+        renacimiento personal: escribí un libro, comencé a modelar arcilla
+        y, por primera vez, pinté con plena conciencia de lo que quería
+        contar. El arte dejó de ser un refugio y se convirtió en una
+        elección.<br><br>
+        No fue hasta hace tres años que decidí llamarme artista.
+        No porque antes no lo fuera, sino porque por fin me permití serlo.
+        Tal vez había llegado, al fin, la hora de ser quien siempre quise ser.
     </div>
 </section>
 
-<!-- ===== MI LIBRO ===== -->
-<section class="libro" id="libro">
-    <h2 class="section-title fade-up" style="margin-bottom:.2em">Mi Libro</h2>
-    <p class="section-subtitle fade-up" style="margin-bottom:.5rem">
-        <em>De la repetición a la creación: descubre tus patrones limitantes y transforma tu vida.</em>
-    </p>
-
-    <div class="libro-container">
-        <div class="libro-scroll-section">
-            <div class="libro-sticky">
-                <div class="libro-video-wrap fade-up">
-                    <canvas id="libroCanvas" width="800" height="1200"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="libro-cta fade-up">
-            <p>Descubrí las herramientas para romper tus patrones limitantes y crear la vida que merecés.</p>
-            <a href="https://www.amazon.fr/dp/2959526910?ref=cm_sw_r_cp_ud_dp_WEDAPVKPDN7BDMG7043M&ref_=cm_sw_r_cp_ud_dp_WEDAPVKPDN7BDMG7043M&social_share=cm_sw_r_cp_ud_dp_WEDAPVKPDN7BDMG7043M&skipTwisterOG=1" class="btn btn-primary" target="_blank" rel="noopener">Comprar en Amazon — $19</a>
-        </div>
+<!-- ===== CARDS ===== -->
+<section class="cards-section">
+    <h2 class="fade-up">Explorá mi mundo</h2>
+    <div class="cards-grid">
+        <a href="reto.html" class="card fade-up">
+            <div class="card-icon green">&#127793;</div>
+            <h3>Reto 5M</h3>
+            <p>Cuatro semanas de ejercicios prácticos para introducirte en la creación consciente de tu vida.</p>
+            <div class="card-price">$49</div>
+            <span class="card-link">Conocer más &rarr;</span>
+        </a>
+        <a href="libro.html" class="card fade-up">
+            <div class="card-icon celeste">&#128214;</div>
+            <h3>Mi Libro</h3>
+            <p>De la repetición a la creación: descubre tus patrones limitantes y transforma tu vida.</p>
+            <div class="card-price">$19</div>
+            <span class="card-link">Ver el libro &rarr;</span>
+        </a>
+        <a href="arte.html" class="card fade-up">
+            <div class="card-icon green">&#127912;</div>
+            <h3>Mi Arte</h3>
+            <p>Obras que nacen de la intuición, el color y la búsqueda interior.</p>
+            <span class="card-link">Próximamente &rarr;</span>
+        </a>
     </div>
-</section>
-
-<!-- ===== MIS OBRAS ===== -->
-<section class="obras" id="obras">
-    <h2 class="section-title fade-up">Mi Arte</h2>
-    <div class="obras-badge fade-up">Próximamente</div>
 </section>
 
 <!-- ===== FOOTER ===== -->
@@ -588,83 +241,17 @@
     <p>&copy; 2026 Carolina Alvado. Todos los derechos reservados.</p>
 </footer>
 
-<!-- ===== JS ===== -->
 <script>
-    // === NAV SCROLL ===
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 50);
-    });
-
-    // === HAMBURGER ===
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
     hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
-    navLinks.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => navLinks.classList.remove('open'));
-    });
-
-    // === FADE UP ON SCROLL ===
-    const observer = new IntersectionObserver((entries) => {
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+    const observer = new IntersectionObserver(entries => {
         entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.15 });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-    // === LIBRO: SCROLL-DRIVEN FRAME SEQUENCE (Apple-style) ===
-    (function() {
-        const canvas = document.getElementById('libroCanvas');
-        const scrollSection = document.querySelector('.libro-scroll-section');
-        if (!canvas || !scrollSection) return;
-
-        const ctx = canvas.getContext('2d');
-        const TOTAL_FRAMES = 61;
-        const frames = [];
-        let loaded = 0;
-        let currentFrame = -1;
-
-        // Preload all frames
-        for (let i = 0; i < TOTAL_FRAMES; i++) {
-            const img = new Image();
-            img.src = 'frames/frame_' + String(i).padStart(4, '0') + '.webp';
-            img.onload = () => {
-                loaded++;
-                // Draw first frame as soon as it loads
-                if (i === 0) {
-                    canvas.width = img.naturalWidth;
-                    canvas.height = img.naturalHeight;
-                    ctx.drawImage(img, 0, 0);
-                    currentFrame = 0;
-                }
-            };
-            frames.push(img);
-        }
-
-        function drawFrame(index) {
-            if (index === currentFrame) return;
-            if (!frames[index] || !frames[index].complete) return;
-            currentFrame = index;
-            ctx.drawImage(frames[index], 0, 0);
-        }
-
-        let ticking = false;
-        window.addEventListener('scroll', () => {
-            if (ticking) return;
-            ticking = true;
-
-            requestAnimationFrame(() => {
-                const rect = scrollSection.getBoundingClientRect();
-                const sectionHeight = scrollSection.offsetHeight - window.innerHeight;
-
-                let progress = -rect.top / sectionHeight;
-                progress = Math.max(0, Math.min(1, progress));
-
-                const frameIndex = Math.min(TOTAL_FRAMES - 1, Math.floor(progress * TOTAL_FRAMES));
-                drawFrame(frameIndex);
-
-                ticking = false;
-            });
-        }, { passive: true });
-    })();
 </script>
 
 </body>

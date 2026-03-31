@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Libro — Carolina Alvado</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .libro-hero {
+            min-height: 40vh;
+            display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(160deg, var(--celeste-light) 0%, var(--white) 50%, var(--green-light) 100%);
+            padding: 7rem 2rem 2rem;
+            text-align: center;
+        }
+        .libro-hero h1 {
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            color: var(--green-dark);
+            margin-bottom: .5rem;
+        }
+        .libro-hero p {
+            font-size: 1.15rem;
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        .libro-section {
+            background: var(--gray-50);
+            padding: 0 2rem;
+        }
+        .libro-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .libro-scroll-section {
+            position: relative;
+            height: 300vh;
+        }
+        .libro-sticky {
+            position: sticky;
+            top: 5vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+        }
+        .libro-video-wrap {
+            max-width: 400px;
+            width: 100%;
+            max-height: calc(100vh - 3rem);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            background: #000;
+        }
+        .libro-video-wrap canvas {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .libro-cta {
+            text-align: center;
+            padding: 1rem 2rem 4rem;
+        }
+        .libro-cta p {
+            font-size: 1.1rem;
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+            max-width: 500px;
+            margin-left: auto; margin-right: auto;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 768px) {
+            .libro-scroll-section { height: 200vh; }
+            .libro-video-wrap {
+                max-width: 85vw;
+                max-height: calc(100vh - 2rem);
+            }
+            .libro-sticky { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">Carolina Alvado</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="reto.html">Reto 5M</a></li>
+            <li><a href="libro.html">Mi Libro</a></li>
+            <li><a href="arte.html">Mi Arte</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Menú">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<section class="libro-hero">
+    <div class="fade-up">
+        <h1>Mi Libro</h1>
+        <p>De la repetición a la creación: descubre tus patrones limitantes y transforma tu vida.</p>
+    </div>
+</section>
+
+<section class="libro-section">
+    <div class="libro-container">
+        <div class="libro-scroll-section">
+            <div class="libro-sticky">
+                <div class="libro-video-wrap fade-up">
+                    <canvas id="libroCanvas" width="800" height="1200"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="libro-cta fade-up">
+            <p>Descubrí las herramientas para romper tus patrones limitantes y crear la vida que merecés.</p>
+            <a href="https://www.amazon.fr/dp/2959526910?ref=cm_sw_r_cp_ud_dp_WEDAPVKPDN7BDMG7043M&ref_=cm_sw_r_cp_ud_dp_WEDAPVKPDN7BDMG7043M&social_share=cm_sw_r_cp_ud_dp_WEDAPVKPDN7BDMG7043M&skipTwisterOG=1" class="btn btn-primary" target="_blank" rel="noopener">Comprar en Amazon — $19</a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-name">Carolina Alvado</div>
+    <p>&copy; 2026 Carolina Alvado. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // === SCROLL-DRIVEN FRAME SEQUENCE ===
+    (function() {
+        const canvas = document.getElementById('libroCanvas');
+        const scrollSection = document.querySelector('.libro-scroll-section');
+        if (!canvas || !scrollSection) return;
+
+        const ctx = canvas.getContext('2d');
+        const TOTAL_FRAMES = 61;
+        const frames = [];
+        let currentFrame = -1;
+
+        for (let i = 0; i < TOTAL_FRAMES; i++) {
+            const img = new Image();
+            img.src = 'frames/frame_' + String(i).padStart(4, '0') + '.webp';
+            img.onload = () => {
+                if (i === 0) {
+                    canvas.width = img.naturalWidth;
+                    canvas.height = img.naturalHeight;
+                    ctx.drawImage(img, 0, 0);
+                    currentFrame = 0;
+                }
+            };
+            frames.push(img);
+        }
+
+        function drawFrame(index) {
+            if (index === currentFrame) return;
+            if (!frames[index] || !frames[index].complete) return;
+            currentFrame = index;
+            ctx.drawImage(frames[index], 0, 0);
+        }
+
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+                const rect = scrollSection.getBoundingClientRect();
+                const sectionHeight = scrollSection.offsetHeight - window.innerHeight;
+                let progress = -rect.top / sectionHeight;
+                progress = Math.max(0, Math.min(1, progress));
+                const frameIndex = Math.min(TOTAL_FRAMES - 1, Math.floor(progress * TOTAL_FRAMES));
+                drawFrame(frameIndex);
+                ticking = false;
+            });
+        }, { passive: true });
+    })();
+</script>
+
+</body>
+</html>
