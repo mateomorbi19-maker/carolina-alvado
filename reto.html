@@ -154,12 +154,23 @@
             position: relative;
             margin-bottom: 1rem;
         }
+        .reto-cta .btn-group {
+            display: flex; gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
         .reto-cta .btn {
             background: #fff; color: var(--green-dark);
-            font-size: 1.1rem; padding: 1rem 2.5rem;
+            font-size: 1rem; padding: .9rem 2rem;
             position: relative;
         }
         .reto-cta .btn:hover { background: var(--celeste-light); color: var(--green-dark); }
+        .reto-cta .btn-world {
+            background: transparent; color: #fff;
+            border: 2px solid #fff;
+        }
+        .reto-cta .btn-world:hover { background: rgba(255,255,255,.15); color: #fff; }
 
         @media (max-width: 600px) {
             .objetivos { grid-template-columns: 1fr; }
@@ -265,7 +276,10 @@
     <div class="reto-cta fade-up">
         <h3>Comenzá tu transformación hoy</h3>
         <div class="price">$49</div>
-        <a href="#" class="btn">Acceder al Reto 5M por $49</a>
+        <div class="btn-group">
+            <a href="https://mpago.la/31JQUVa" class="btn" target="_blank" rel="noopener">Pagar en pesos (Argentina)</a>
+            <a href="#" class="btn btn-world">Pagar desde el resto del mundo</a>
+        </div>
     </div>
 </section>
 
