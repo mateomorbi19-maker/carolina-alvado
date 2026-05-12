@@ -168,17 +168,19 @@
             padding-bottom: 2px;
         }
 
-        /* Image-background card (Reto 5M) */
+        /* Image-background card */
         .card.card-image {
             position: relative;
             overflow: hidden;
             padding: 0;
-            background-image: url('reto-5m.jpeg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             aspect-ratio: 1 / 1;
         }
+        .card.card-reto  { background-image: url('reto-5m.jpeg'); }
+        .card.card-libro { background-image: url('milibro.jpeg'); }
+        .card.card-arte  { background-image: url('miarte.jpeg'); }
         .card.card-image .card-overlay {
             position: absolute;
             inset: 0;
@@ -287,24 +289,26 @@
 <section class="cards-section">
     <h2 class="fade-up">Explorá mi mundo</h2>
     <div class="cards-grid">
-        <a href="reto.html" class="card card-image fade-up" id="cardReto">
+        <a href="reto.html" class="card card-image card-reto fade-up">
             <div class="card-overlay">
                 <h3>Reto 5M</h3>
                 <p>Cuatro semanas de ejercicios prácticos para introducirte en la creación consciente de tu vida.</p>
                 <span class="card-link">Conocer más &rarr;</span>
             </div>
         </a>
-        <a href="libro.html" class="card fade-up">
-            <div class="card-icon celeste">&#128214;</div>
-            <h3>Mi Libro</h3>
-            <p>De la repetición a la creación: descubre tus patrones limitantes y transforma tu vida.</p>
-            <span class="card-link">Ver el libro &rarr;</span>
+        <a href="libro.html" class="card card-image card-libro fade-up">
+            <div class="card-overlay">
+                <h3>Mi Libro</h3>
+                <p>De la repetición a la creación: descubre tus patrones limitantes y transforma tu vida.</p>
+                <span class="card-link">Ver el libro &rarr;</span>
+            </div>
         </a>
-        <a href="arte.html" class="card fade-up">
-            <div class="card-icon green">&#127912;</div>
-            <h3>Mi Arte</h3>
-            <p>Exposiciones y colecciones</p>
-            <span class="card-link">Próximamente &rarr;</span>
+        <a href="arte.html" class="card card-image card-arte fade-up">
+            <div class="card-overlay">
+                <h3>Mi Arte</h3>
+                <p>Exposiciones y colecciones</p>
+                <span class="card-link">Próximamente &rarr;</span>
+            </div>
         </a>
     </div>
 </section>
@@ -342,19 +346,22 @@
         bioHide.classList.remove('show');
     });
 
-    // === RETO 5M CARD: two-tap on touch devices ===
-    const cardReto = document.getElementById('cardReto');
-    if (cardReto && window.matchMedia('(hover: none)').matches) {
-        cardReto.addEventListener('click', (e) => {
-            if (!cardReto.classList.contains('is-active')) {
-                e.preventDefault();
-                cardReto.classList.add('is-active');
-            }
+    // === IMAGE CARDS: two-tap on touch devices ===
+    const imageCards = document.querySelectorAll('.card-image');
+    if (imageCards.length && window.matchMedia('(hover: none)').matches) {
+        imageCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (!card.classList.contains('is-active')) {
+                    e.preventDefault();
+                    imageCards.forEach(c => c.classList.remove('is-active'));
+                    card.classList.add('is-active');
+                }
+            });
         });
         document.addEventListener('click', (e) => {
-            if (!cardReto.contains(e.target)) {
-                cardReto.classList.remove('is-active');
-            }
+            imageCards.forEach(card => {
+                if (!card.contains(e.target)) card.classList.remove('is-active');
+            });
         });
     }
 </script>
