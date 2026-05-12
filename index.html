@@ -12,7 +12,7 @@
         .hero {
             display: flex; align-items: center; justify-content: center;
             background: #fff;
-            padding: 6rem 2rem 0;
+            padding: 6rem 2rem 2rem;
             text-align: center;
         }
         .hero-inner {
@@ -42,6 +42,11 @@
             font-size: 1.15rem; line-height: 1.8;
             color: var(--gray-600);
             max-width: 640px; margin: 0 auto 0;
+        }
+        .hero-text-section {
+            background: #fff;
+            text-align: center;
+            padding: 2rem 2rem 1rem;
         }
 
         /* ===== PHOTO ===== */
@@ -215,7 +220,8 @@
 
         @media (max-width: 768px) {
             .hero-photo { max-width: 300px; }
-            .hero { padding: 5.5rem 1.5rem 0; }
+            .hero { padding: 5.5rem 1.5rem 1.5rem; }
+            .hero-text-section { padding: 1.5rem 1.5rem .5rem; }
         }
     </style>
 </head>
@@ -241,18 +247,21 @@
     <div class="hero-inner fade-up">
         <div class="hero-badge">Artista &middot; Escritora &middot; Creadora</div>
         <h1>Hola, soy <span>Carolina Alvado</span></h1>
-        <p class="hero-text">
-            Madre, artista plástica y creadora argentina. Autora del libro
-            <em>De la repetición a la creación</em>. Acompaño a personas
-            a descubrir sus patrones limitantes y transformar su vida a través de simples
-            pasos y ejercicios que llamo, método 5M.
-        </p>
     </div>
 </section>
 
 <div class="hero-photo-section">
     <img src="mama.jpeg" alt="Carolina Alvado" class="hero-photo fade-up">
 </div>
+
+<section class="hero-text-section">
+    <p class="hero-text fade-up">
+        Madre, artista plástica y creadora argentina. Autora del libro
+        <em>De la repetición a la creación</em>. Acompaño a personas
+        a descubrir sus patrones limitantes y transformar su vida a través de simples
+        pasos y ejercicios que llamo, método 5M.
+    </p>
+</section>
 
 <!-- ===== BIO ===== -->
 <section class="bio">
